@@ -1,9 +1,9 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import { KeyboardAvoidingView } from 'react-native-web';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen = () => {
     const [email, setEmail] = useState('');
@@ -14,7 +14,7 @@ const LoginScreen = () => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                navigation.navigate('Home');
+                navigation.replace('Home');
             } 
           });
           return unsubscribe;
